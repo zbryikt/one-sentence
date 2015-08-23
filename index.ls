@@ -43,7 +43,7 @@ angular.module \main, <[]>
             it.timestamp = new Date(it.updated_time).getTime!
           $scope.posts ++= d.data
         .error (d) -> $interval.cancel $scope.handler
-
+    $scope.$watch 'token' -> if it => $scope.fetch!
     $scope.getat = ->
       FB.getLoginStatus (res) ->
         if res.status == \connected => $scope.$apply -> $scope.token = res.authResponse.accessToken
