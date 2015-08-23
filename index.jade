@@ -23,6 +23,8 @@ html(lang="en")
         br
         br
         .text-center: .btn.btn-lg.btn-success(ng-click="login()") 立刻登入，馬上閱讀！
+        br
+        .text-center: img#thumbnail(src="thumbnail.png")
       .text-center(ng-show="token",ng-cloak): .btn.btn-lg.btn-default(ng-click="fetch()") 開始滑一句話
       div(ng-show="token",ng-cloak)
         h4.head 大會分組一覽
