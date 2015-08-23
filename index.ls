@@ -9,17 +9,19 @@ angular.module \main, <[]>
         feed id, title
       ), 1000
     $scope.token = null
-    url = \https://graph.facebook.com/v2.4/search
-    params = do
-      q: \一句話惹怒
-      type: \event
-      access_token: $scope.token
-      format: \json
-      method: \GET
-      pretty: 0
-      limit: 100
 
     $scope.fetch = ->
+
+      url = \https://graph.facebook.com/v2.4/search
+      params = do
+        q: \一句話惹怒
+        type: \event
+        access_token: $scope.token
+        format: \json
+        method: \GET
+        pretty: 0
+        limit: 100
+
       $http do
         url: url
         params: params
