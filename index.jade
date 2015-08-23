@@ -18,6 +18,7 @@ html(lang="en")
   body(ng-app="main",ng-controller="main")
     #root
       h2#title 世界第一一句話惹怒大會
+      #fb-like: .fb-like
       p.text-center 你不需要滑臉書惹，來滑最新的一句話惹怒大賽吧！
       div(ng-show="!token")
         br
@@ -38,6 +39,7 @@ html(lang="en")
             .link: a(ng-attr-href="http://facebook.com/{{post.id}}",target="_blank") 連結
             | {{post.message}}
 
+    #fb-root
     script.
       window.fbAsyncInit = function() {
         FB.init({

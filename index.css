@@ -77,3 +77,15 @@ body {
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
+#fb-like {
+  position: fixed;
+  top: 0;
+  right: 10px;
+  background: #f00;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #999;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border-top: 0;
+  background: #eee;
+}
