@@ -8,29 +8,31 @@ angular.module \main, <[]>
         [id,title] = $scope.pending.splice idx, 1 .0
         feed id, title
       ), 1000
-    token = \CAACEdEose0cBALttLAoxbjzArHlSVjWMY5BQIgYD8FiFkIXLCnVuTdVPYJfvueDZB6FVbhusb8wLSn42SZAtzGtaWcd3ZAec6FyKbUIbbNcZCnbZBN47khfTdNOaj4Qsk77qo5AGZCmPpWVpZCvgTFSsaCOrGcEw47Yr1kEE9erDBngbsI5wIHgZAfB76Gn97ucmo4FnanywxjzhH9Ydh8kV
+    $scope.token = null
     url = \https://graph.facebook.com/v2.4/search
     params = do
       q: \一句話惹怒
       type: \event
-      access_token: token
+      access_token: $scope.token
       format: \json
       method: \GET
       pretty: 0
       limit: 100
 
-    $http do
-      url: url
-      params: params
-      method: \GET
-    .success (d) ->
-      $scope.list = d.data
-      $scope.pending = $scope.list.map(-> [it.id, it.name])
-      $scope.feeding!
+    $scope.fetch = ->
+      $http do
+        url: url
+        params: params
+        method: \GET
+      .success (d) ->
+        $scope.list = d.data
+        $scope.pending = $scope.list.map(-> [it.id, it.name])
+        $scope.feeding!
+
     feed = (id, title) ->
       url = "https://graph.facebook.com/v2.4/#id/feed"
       params = do
-        access_token: token
+        access_token: $scope.token
         limit: 5
       $http {url, params, method: \GET}
         .success (d) ->
@@ -40,4 +42,10 @@ angular.module \main, <[]>
           $scope.posts ++= d.data
         .error (d) -> $interval.cancel $scope.handler
 
-
+    $scope.getat = ->
+      FB.getLoginStatus (res) ->
+        if res.status == \connected => $scope.$apply -> $scope.token = res.authResponse.accessToken
+    $scope.login = -> if !$scope.token =>
+      FB.login (res) ->
+        if res.status == \connected => $scope.$apply -> $scope.token = res.authResponse.accessToken
+        

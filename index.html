@@ -1,1 +1,16 @@
-<!DOCTYPE html><html lang="en"><head prefix="og: http://ogp.me/ns#"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>天下第一一句話惹怒大會</title><!-- libraries--><link rel="icon" type="image/x-icon" href="thumbnail.png"><script type="text/javascript" src="assets/jquery/1.10.2/jquery.min.js"></script><script type="text/javascript" src="assets/angular/1.2.3/angular.min.js"></script><link rel="stylesheet" type="text/css" href="assets/bootstrap/3.0.2/css/bootstrap.min.css"><script type="text/javascript" src="assets/bootstrap/3.0.2/js/bootstrap.min.js"></script><!-- custom files--><link rel="stylesheet" type="text/css" href="index.css"><script type="text/javascript" src="index.js"></script></head><body ng-app="main" ng-controller="main"><div id="root"><h2 id="title">世界第一一句話惹怒大會</h2><p>你不需要滑臉書惹，來滑最新的一句話惹怒大賽吧！</p><h4 class="head">大會分組一覽</h4><div class="events"><div ng-repeat="event in list" class="event">{{event.name}}</div></div><h4 class="head">即時戰況</h4><div class="posts"><div ng-repeat="post in posts" class="post"><div class="board">{{post.board}}</div><div class="link"><a ng-attr-href="http://facebook.com/{{post.id}}" target="_blank">連結</a></div>{{post.message}}</div></div></div></body></html>
+<!DOCTYPE html><html lang="en"><head prefix="og: http://ogp.me/ns#"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>天下第一一句話惹怒大會</title><!-- libraries--><link rel="icon" type="image/x-icon" href="thumbnail.png"><script type="text/javascript" src="assets/jquery/1.10.2/jquery.min.js"></script><script type="text/javascript" src="assets/angular/1.2.3/angular.min.js"></script><link rel="stylesheet" type="text/css" href="assets/bootstrap/3.0.2/css/bootstrap.min.css"><script type="text/javascript" src="assets/bootstrap/3.0.2/js/bootstrap.min.js"></script><!-- custom files--><link rel="stylesheet" type="text/css" href="index.css"><script type="text/javascript" src="index.js"></script></head><body ng-app="main" ng-controller="main"><div id="root"><h2 id="title">世界第一一句話惹怒大會</h2><p class="text-center">你不需要滑臉書惹，來滑最新的一句話惹怒大賽吧！</p><div ng-show="!token"><br><br><div class="text-center"><div ng-click="login()" class="btn btn-lg btn-success">立刻登入，馬上閱讀！</div></div></div><div ng-show="token" ng-cloak class="text-center"><div ng-click="fetch()" class="btn btn-lg btn-default">開始滑一句話</div></div><div ng-show="token" ng-cloak><h4 class="head">大會分組一覽</h4><div class="events"><div ng-repeat="event in list" class="event">{{event.name}}</div></div><h4 class="head">即時戰況</h4><div class="posts"><div ng-repeat="post in posts" class="post"><div class="board">{{post.board}}</div><div class="link"><a ng-attr-href="http://facebook.com/{{post.id}}" target="_blank">連結</a></div>{{post.message}}</div></div></div></div><script>window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '742403569221064',
+    xfbml      : true,
+    version    : 'v2.4'
+  });
+  angular.element("body").scope().getat();
+};
+
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));</script></body></html>

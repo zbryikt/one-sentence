@@ -18,14 +18,38 @@ html(lang="en")
   body(ng-app="main",ng-controller="main")
     #root
       h2#title 世界第一一句話惹怒大會
-      p 你不需要滑臉書惹，來滑最新的一句話惹怒大賽吧！
-      h4.head 大會分組一覽
-      .events
-        .event(ng-repeat="event in list") {{event.name}}
+      p.text-center 你不需要滑臉書惹，來滑最新的一句話惹怒大賽吧！
+      div(ng-show="!token")
+        br
+        br
+        .text-center: .btn.btn-lg.btn-success(ng-click="login()") 立刻登入，馬上閱讀！
+      .text-center(ng-show="token",ng-cloak): .btn.btn-lg.btn-default(ng-click="fetch()") 開始滑一句話
+      div(ng-show="token",ng-cloak)
+        h4.head 大會分組一覽
+        .events
+          .event(ng-repeat="event in list") {{event.name}}
 
-      h4.head 即時戰況
-      .posts
-        .post(ng-repeat="post in posts")
-          .board {{post.board}}
-          .link: a(ng-attr-href="http://facebook.com/{{post.id}}",target="_blank") 連結
-          | {{post.message}}
+        h4.head 即時戰況
+        .posts
+          .post(ng-repeat="post in posts")
+            .board {{post.board}}
+            .link: a(ng-attr-href="http://facebook.com/{{post.id}}",target="_blank") 連結
+            | {{post.message}}
+
+    script.
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '742403569221064',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+        angular.element("body").scope().getat();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
